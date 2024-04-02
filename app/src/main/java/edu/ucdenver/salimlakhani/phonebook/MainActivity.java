@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import java.util.ArrayList;
 
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        setSupportActionBar(binding.toolbar);
 
         list = new ArrayList<Contact>();
         contactAdapter = new ContactAdapter(this, list);
@@ -49,6 +52,26 @@ public class MainActivity extends AppCompatActivity {
 
         );
     } // End of onCreate method
+
+    public boolean onCreateOptionsMenu (Menu menu) {
+
+        getMenuInflater().inflate(R.menu.menu_activity_main, menu);
+
+        return true;
+
+    }
+
+    public boolean onOptionsItemSelected (MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_add) {
+            AddContactDialog addContactDialog = new AddContactDialog();
+            addContactDialog.show(getSupportFragmentManager(), "");
+        }
+
+
+        return true;
+    }
 
     public void addContact (Contact contact) {
         list.add(contact);
