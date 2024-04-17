@@ -51,6 +51,7 @@ public class AddContactDialog extends DialogFragment {
                             Contact contact = new Contact (name, phone, email, street, city, state, zip, contactType);
 
                             MainActivity mainActivity = (MainActivity) getActivity();
+                            assert mainActivity != null;
                             mainActivity.addContact (contact);
 
                             dismiss();

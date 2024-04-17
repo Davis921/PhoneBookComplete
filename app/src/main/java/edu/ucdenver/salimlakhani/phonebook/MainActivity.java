@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -68,8 +69,6 @@ public class MainActivity extends AppCompatActivity {
             AddContactDialog addContactDialog = new AddContactDialog();
             addContactDialog.show(getSupportFragmentManager(), "");
         }
-
-
         return true;
     }
 
@@ -78,5 +77,16 @@ public class MainActivity extends AppCompatActivity {
         contactAdapter.notifyDataSetChanged();
 
         //Log.i ("info", "Number of Contacts" + list.size());
+    }
+
+    public void deleteContact(int position){
+        list.remove(position);
+        contactAdapter.notifyDataSetChanged();
+    }
+
+    public void onClickContact(int position){
+        ViewContactDialog viewContactDialog = new ViewContactDialog(position, list);
+        viewContactDialog.show(getSupportFragmentManager(), "");
+
     }
 } //End of class
